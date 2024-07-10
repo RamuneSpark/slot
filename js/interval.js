@@ -24,14 +24,38 @@ const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 // /?id=aaa
 
+
 let number = [0,0,0];
 let slot = [0,0,0];
 
-if(id == 0 || id == 1 || id == 2 ){
+let today = new Date();
+
+let year = today.getFullYear();
+let month = today.getMonth();
+let date = today.getDate();
+
+let data = localStorage.getItem("suacShokudo");
+
+if(data !== null || data !== undefined){
+
+    if(data.y === year && data.m === month && data.d === date){
+
+        number = data.num;
+        slot = data.sl;
+
+    }else{
+
+        localStorage.removeItem("suacShokudo")
+
+    }
+
+}
+
+if((id == 0 || id == 1 || id == 2 ) && slot[id] === 0){
 
     slot[id] = 1;
     number[id] = Math.floor(Math.random() * 10);
-    
+    save();
 
 }
 
@@ -48,3 +72,11 @@ div_texts[i].style.zIndex = 3;
 ////出力
 setText(div_texts[i],"");
 }
+
+function save(){
+
+    localStorage.setItem("suacShokudo",JSON.stringify({y:year,m:month,d:date,sl:slot,num:number}))
+
+
+}
+
