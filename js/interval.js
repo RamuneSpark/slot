@@ -6,8 +6,10 @@ function run(){
 
     
     for(let i = 0; i < 3; i++){
-    number[i] = Math.floor(Math.random() * 10);
-            
+
+    if(slot[i] === 0){
+        number[i] = Math.floor(Math.random() * 10);
+    }
 
         setText(div_texts[i],number[i]);
     }
@@ -17,7 +19,21 @@ function run(){
     
 }
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const id = urlParams.get('id');
+// /?id=aaa
+
 let number = [0,0,0];
+let slot = [0,0,0];
+
+if(id == 0 || id == 1 || id == 2 ){
+
+    slot[i] = 1;
+    number[i] = Math.floor(Math.random() * 10);
+    
+
+}
 
 let div_texts = [];
 for(let i = 0; i < 3; i++){
