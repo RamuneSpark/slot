@@ -29,8 +29,8 @@ let slot = [0,0,0];
 
 if(id == 0 || id == 1 || id == 2 ){
 
-    slot[i] = 1;
-    number[i] = Math.floor(Math.random() * 10);
+    slot[id] = 1;
+    number[id] = Math.floor(Math.random() * 10);
     
 
 }
