@@ -37,7 +37,7 @@ let date = today.getDate();
 let data = localStorage.getItem("suacShokudo");
 data = JSON.parse(data);
 
-if(data !== null || data !== undefined){
+if(data !== null && data !== undefined){
 
     if(data.y === year && data.m === month && data.d === date){
 
