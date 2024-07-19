@@ -135,6 +135,7 @@ if(data !== null && data !== undefined){
 if((id == 0 || id == 1 || id == 2 ) && slot[id] === 0){
 
     slot[id] = 1;
+    save();
     
 
 }
