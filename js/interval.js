@@ -52,6 +52,8 @@ const urlParams = new URLSearchParams(queryString);
 let id = urlParams.get('id');
 // /?id=aaa
 
+id = Number(id);
+
 if(id === null){ 
 }
 
