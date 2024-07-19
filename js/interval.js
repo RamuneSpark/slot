@@ -1,23 +1,27 @@
 //ここに書いてある項目が1/50秒に1回実行されます。
 function run(){
     
-    setImage(div_bg,"image/bg.jpg")
+    setImage(div_bg,"image/bg.png")
     
 
-    
+    if(t%2 === 0){
+
     for(let i = 0; i < 3; i++){
 
     if(slot[i] === 0){
         number[i] = Math.floor(Math.random() * 10);
     }
 
-        setText(div_texts[i],number[i]);
+        setImage(div_slotArts[i],"image/new"+number[i]+".png");
     }
+}
    
-    
+    t++;
 
     
 }
+
+let t = 0;
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -60,19 +64,32 @@ if((id == 0 || id == 1 || id == 2 ) && slot[id] === 0){
 
 }
 
-let div_texts = [];
+let div_slotArts = [];
 for(let i = 0; i < 3; i++){
-document.write( "<div id= texts"+i+"> </div>" );
-div_texts[i] = document.getElementById( "texts"+i );
-defaultSet(div_texts[i],screen);
+document.write( "<div id= slotArts"+i+"> </div>" );
+div_slotArts[i] = document.getElementById( "slotArts"+i );
+defaultSet(div_slotArts[i],screen);
 ////プロパティ
-putXY(div_texts[i],(25*(i+1))+"%","50%")
-translate(div_texts[i], Center,Center)
-fontSet(div_texts[i],"#FFFFFF","Higashi","100","normal","right")
-div_texts[i].style.zIndex = 3;
+transform(div_slotArts[i], Center,Center,0,12)
+div_slotArts[i].style.zIndex = 3;
 ////出力
-setText(div_texts[i],"");
+setText(div_slotArts[i],"");
 }
+
+let div_slotArtsLoad = [];
+for(let i = 0; i < 10; i++){
+    document.write( "<div id= slotArtsLoad"+i+"> </div>" );
+    div_slotArtsLoad[i] = document.getElementById( "slotArtsLoad"+i );
+    screen.appendChild(div_slotArtsLoad[i]);
+    ////プロパティ
+    div_slotArtsLoad[i].style.opacity = 0;
+    ////出力
+    setText(div_slotArtsLoad[i],"image/new"+number[i]+".png");
+}
+
+putXY(div_slotArts[0],(29-1.5)+"%","51.5%")
+putXY(div_slotArts[1],(50-1.5)+"%","51.5%")
+putXY(div_slotArts[2],(71-1.5)+"%","51.5%")
 
 function save(){
 
