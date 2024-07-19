@@ -123,6 +123,7 @@ if(data !== null && data !== undefined){
 
         number = data.num;
         slot = data.sl;
+        slow = data.slw;
 
     }else{
 
@@ -169,7 +170,7 @@ putXY(div_slotArts[2],(71-1.5)+"%","51.5%")
 
 function save(){
 
-    localStorage.setItem("suacShokudo",JSON.stringify({y:year,m:month,d:date,sl:slot,num:number}))
+    localStorage.setItem("suacShokudo",JSON.stringify({y:year,m:month,d:date,sl:slot,num:number,slw:slow}))
 
 
 }
