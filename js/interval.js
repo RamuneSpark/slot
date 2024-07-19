@@ -8,8 +8,30 @@ function run(){
 
     for(let i = 0; i < 3; i++){
 
-    if(slot[i] === 0){
+        slotTimer[i]++;
+
+    if(slot[i] === 0 && slotTimer[i] >= slotTimerMax[i]){
         number[i] = Math.floor(Math.random() * 10);
+        slotTimer[i] = 0;
+
+    }else if(slot[i] === 1 && slotTimer[i] >= slotTimerMax[i]){
+        number[i] = Math.floor(Math.random() * 10);
+        slow++;
+        slotTimer[i] = 0;
+  
+
+        if(slow >= slowTime.length){
+            slot[i] = 2;
+
+        }else{
+            slotTimerMax[i] = slowTime[slow];
+      
+        }
+
+    }if(slot[i] === 2){
+        number[i] = Math.floor(Math.random() * 10);
+        slot[i] = 3;
+        save();
     }
 
         setImage(div_slotArts[i],"image/new"+number[i]+".png");
@@ -17,20 +39,72 @@ function run(){
 }
    
     t++;
-
     
 }
 
 let t = 0;
+let x = 2;
+
+
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get('id');
+let id = urlParams.get('id');
 // /?id=aaa
+
+if(id === null){ 
+}
+
+let slow = 0;
+
+const slowTime = slowTimeSet(); 
+
+function slowTimeSet(){
+
+let a = [];
+let j = 0;
+
+for(let i = 2; i <= 7; i++){
+
+    if(i === 2){
+        for(let i2 = 0; i2 < 16; i2++){
+            a[j] = i;
+            j++;
+        }
+    }else if(i === 3){
+        for(let i2 = 0; i2 < 8; i2++){
+            a[j] = i;
+            j++;
+        }
+    }else if(i === 4){
+        for(let i2 = 0; i2 < 4; i2++){
+            a[j] = i;
+            j++;
+        }
+    }else if(i === 5 || i === 6){
+            a[j] = i;
+            j++;
+    }else if(i === 7){
+        a[j] = 25;
+        j++;
+}
+
+
+
+}
+
+return a;
+
+
+}
+
 
 
 let number = [0,0,0];
 let slot = [0,0,0];
+
+let slotTimer = [2,2,2];
+let slotTimerMax = [2,2,2];
 
 let today = new Date();
 
@@ -43,7 +117,7 @@ data = JSON.parse(data);
 
 if(data !== null && data !== undefined){
 
-    if(data.y === year && data.m === month && data.d === date){
+    if(data.y === year && data.m === month && data.d === date && id !== 5385){
 
         number = data.num;
         slot = data.sl;
@@ -59,8 +133,7 @@ if(data !== null && data !== undefined){
 if((id == 0 || id == 1 || id == 2 ) && slot[id] === 0){
 
     slot[id] = 1;
-    number[id] = Math.floor(Math.random() * 10);
-    save();
+    
 
 }
 

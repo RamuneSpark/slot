@@ -13,11 +13,7 @@ function move( ) {
     //画面サイズ調整
     monitorResize();
     
-    //コントローラ
-    displayController();
     
-    //長押し判定関数
-    hold_down();
     
     //実行
     run();
@@ -25,8 +21,6 @@ function move( ) {
     //ブラックアウト関数
     blackout();
     
-    //デバッグ
-    debug();
     
     
 }

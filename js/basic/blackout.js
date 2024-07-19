@@ -11,7 +11,7 @@ let shift = 0; //シーン内の暗転を伴わない遷移
 
 let change = 0;
 let change_level = 0.1;
-let change_time = 0;
+let change_time = 49;
 
 function blackout(){
 
