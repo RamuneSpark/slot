@@ -16,15 +16,15 @@ function run(){
 
     }else if(slot[i] === 1 && slotTimer[i] >= slotTimerMax[i]){
         number[i] = Math.floor(Math.random() * 10);
-        slow++;
+        slow[i]++;
         slotTimer[i] = 0;
   
 
-        if(slow >= slowTime.length){
+        if(slow[i] >= slowTime.length){
             slot[i] = 2;
 
         }else{
-            slotTimerMax[i] = slowTime[slow];
+            slotTimerMax[i] = slowTime[slow[i]];
       
         }
 
@@ -57,7 +57,7 @@ id = Number(id);
 if(id === null){ 
 }
 
-let slow = 0;
+let slow = [0,0,0];
 
 const slowTime = slowTimeSet(); 
 
