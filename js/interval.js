@@ -119,7 +119,7 @@ data = JSON.parse(data);
 
 if(data !== null && data !== undefined){
 
-    if(data.y === year && data.m === month && data.d === date && id !== 5385){
+    if(data.y === year && data.m === month && data.d === date && id !== 4622){
 
         number = data.num;
         slot = data.sl;
