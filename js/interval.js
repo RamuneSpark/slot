@@ -17,6 +17,7 @@ function run(){
     }else if(slot[i] === 1 && slotTimer[i] >= slotTimerMax[i]){
         number[i] = Math.floor(Math.random() * 10);
         slow[i]++;
+        save();
         slotTimer[i] = 0;
   
 
