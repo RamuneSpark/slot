@@ -4,18 +4,46 @@ function run(){
     setImage(div_bg,"image/bg.png")
     
 
+
     if(t%2 === 0){
 
     for(let i = 0; i < 3; i++){
 
         slotTimer[i]++;
 
+        let newArt = 0;
+
     if(slot[i] === 0 && slotTimer[i] >= slotTimerMax[i]){
-        number[i] = Math.floor(Math.random() * 10);
+
+
+        
+        
+        while(true){
+
+        newArt = Math.floor(Math.random() * 10);        
+
+        if(newArt !== number[i]){
+        number[i] = newArt;
+        break;
+        }
+
+        }
+
         slotTimer[i] = 0;
 
     }else if(slot[i] === 1 && slotTimer[i] >= slotTimerMax[i]){
-        number[i] = Math.floor(Math.random() * 10);
+        
+        while(true){
+
+        newArt = Math.floor(Math.random() * 10);        
+
+        if(newArt !== number[i]){
+        number[i] = newArt;
+        break;
+        }
+
+        }
+
         slow[i]++;
         save();
         slotTimer[i] = 0;
@@ -30,9 +58,28 @@ function run(){
         }
 
     }if(slot[i] === 2){
-        number[i] = Math.floor(Math.random() * 10);
+        
+        while(true){
+
+        newArt = Math.floor(Math.random() * 10);        
+
+        if(newArt !== number[i]){
+        number[i] = newArt;
+        break;
+        }
+
+        }
+
+        //setImage(div_slotArtsStop[i],"image/stop.gif?"+i);
         slot[i] = 3;
         save();
+    }
+
+    if(slot[i] === 3){
+
+        transform(div_slotArts[i],Center,Center,0,13+Math.sin(0.2*t)*1)
+        div_slotArts[i].style.filter = 'brightness('+(100+Math.sin(0.2*t)*8)+'%)';
+      
     }
 
         setImage(div_slotArts[i],"image/new"+number[i]+".png");
@@ -53,10 +100,14 @@ const urlParams = new URLSearchParams(queryString);
 let id = urlParams.get('id');
 // /?id=aaa
 
-id = Number(id);
+
 
 if(id === null){ 
+    //id = 2;
+}else{
+    id = Number(id);
 }
+
 
 let slow = [0,0,0];
 
@@ -106,6 +157,8 @@ return a;
 let number = [0,0,0];
 let slot = [0,0,0];
 
+//let slotScale = [0,0,0];
+
 let slotTimer = [2,2,2];
 let slotTimerMax = [2,2,2];
 
@@ -151,7 +204,35 @@ defaultSet(div_slotArts[i],screen);
 transform(div_slotArts[i], Center,Center,0,12)
 div_slotArts[i].style.zIndex = 3;
 ////出力
-setText(div_slotArts[i],"");
+setImage(div_slotArts[i],"");
+}
+
+let div_slotArtsStop = [];
+for(let i = 0; i < 3; i++){
+document.write( "<div id= slotArtsStop"+i+"> </div>" );
+div_slotArtsStop[i] = document.getElementById( "slotArtsStop"+i );
+defaultSet(div_slotArtsStop[i],screen);
+////プロパティ
+transform(div_slotArtsStop[i], Center,Center,0,12)
+div_slotArtsStop[i].style.zIndex = 3;
+////出力
+setImage(div_slotArtsStop[i],"");
+}
+
+
+putXY(div_slotArts[0],(29-1.5)+"%","51.5%")
+putXY(div_slotArts[1],(50-1.5)+"%","51.5%")
+putXY(div_slotArts[2],(71-1.5)+"%","51.5%")
+
+putXY(div_slotArtsStop[0],(29-1.5)+"%","51.5%")
+putXY(div_slotArtsStop[1],(50-1.5)+"%","51.5%")
+putXY(div_slotArtsStop[2],(71-1.5)+"%","51.5%")
+
+function save(){
+
+    localStorage.setItem("suacShokudo",JSON.stringify({y:year,m:month,d:date,sl:slot,num:number,slw:slow}))
+
+
 }
 
 let div_slotArtsLoad = [];
@@ -161,18 +242,7 @@ for(let i = 0; i < 10; i++){
     screen.appendChild(div_slotArtsLoad[i]);
     ////プロパティ
     div_slotArtsLoad[i].style.opacity = 0;
+    div_slotArtsLoad[i].style.position = "absolute";
     ////出力
-    setText(div_slotArtsLoad[i],"image/new"+number[i]+".png");
+    setImage(div_slotArtsLoad[i],"image/new"+i+".png");
 }
-
-putXY(div_slotArts[0],(29-1.5)+"%","51.5%")
-putXY(div_slotArts[1],(50-1.5)+"%","51.5%")
-putXY(div_slotArts[2],(71-1.5)+"%","51.5%")
-
-function save(){
-
-    localStorage.setItem("suacShokudo",JSON.stringify({y:year,m:month,d:date,sl:slot,num:number,slw:slow}))
-
-
-}
-
