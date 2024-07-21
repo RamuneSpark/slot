@@ -5,10 +5,11 @@ function run(){
     
 
 
-    if(t%2 === 0){
+
 
     for(let i = 0; i < 3; i++){
 
+        if(t%2 === 0){
         slotTimer[i]++;
 
         let newArt = 0;
@@ -70,12 +71,18 @@ function run(){
 
         }
 
-        //setImage(div_slotArtsStop[i],"image/stop.gif?"+i);
+
         slot[i] = 3;
         save();
     }
 
+    }
+
     if(slot[i] === 3){
+
+        setImage(div_slotArtsStop[i],"image/light.png");
+        div_slotArtsStop[i].style.filter = 'brightness('+(150+Math.sin(0.2*t)*50)+'%)';
+        div_slotArtsStop[i].style.opacity = t%2; 
 
         transform(div_slotArts[i],Center,Center,0,13+Math.sin(0.2*t)*1)
         div_slotArts[i].style.filter = 'brightness('+(100+Math.sin(0.2*t)*8)+'%)';
@@ -83,7 +90,8 @@ function run(){
     }
 
         setImage(div_slotArts[i],"image/new"+number[i]+".png");
-    }
+    
+
 }
    
     t++;
@@ -91,6 +99,7 @@ function run(){
 }
 
 let t = 0;
+let t2 = 0;
 let x = 2;
 
 
@@ -103,7 +112,7 @@ let id = urlParams.get('id');
 
 
 if(id === null){ 
-    //id = 2;
+    //id = 1;
 }else{
     id = Number(id);
 }
@@ -213,7 +222,7 @@ document.write( "<div id= slotArtsStop"+i+"> </div>" );
 div_slotArtsStop[i] = document.getElementById( "slotArtsStop"+i );
 defaultSet(div_slotArtsStop[i],screen);
 ////プロパティ
-transform(div_slotArtsStop[i], Center,Center,0,12)
+transform(div_slotArtsStop[i], Center,Center,0,18)
 div_slotArtsStop[i].style.zIndex = 3;
 ////出力
 setImage(div_slotArtsStop[i],"");
@@ -224,9 +233,9 @@ putXY(div_slotArts[0],(29-1.5)+"%","51.5%")
 putXY(div_slotArts[1],(50-1.5)+"%","51.5%")
 putXY(div_slotArts[2],(71-1.5)+"%","51.5%")
 
-putXY(div_slotArtsStop[0],(29-1.5)+"%","51.5%")
-putXY(div_slotArtsStop[1],(50-1.5)+"%","51.5%")
-putXY(div_slotArtsStop[2],(71-1.5)+"%","51.5%")
+putXY(div_slotArtsStop[0],(29-1.5)+"%","49%")
+putXY(div_slotArtsStop[1],(50-1.5)+"%","49%")
+putXY(div_slotArtsStop[2],(71-1.5)+"%","49%")
 
 function save(){
 
