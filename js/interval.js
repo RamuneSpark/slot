@@ -112,7 +112,7 @@ let id = urlParams.get('id');
 
 
 if(id === null){ 
-    //id = 1;
+    
 }else{
     id = Number(id);
 }
